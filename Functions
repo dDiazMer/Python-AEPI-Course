@@ -1,0 +1,102 @@
+marcas = [
+    (1, 'Audi'),
+    (2, 'Nissan'),
+    (3, 'Mercedes')
+]
+
+coches = [
+    {
+        'modelo': 'Audi C3',
+        'marca': 1,
+        'precio': 25000,
+        'ano': 2017,
+    },
+    {
+        'modelo': 'Nissan Pulsar',
+        'marca': 2,
+        'precio': 30000,
+        'ano': 2019,
+    },
+    {
+        'modelo': 'Mercedes K8',
+        'marca': 3,
+        'precio': 45000,
+        'ano': 2019,
+    },
+]
+
+pagos = []
+
+
+def new_car(modelo, marca, precio, ano):
+    x = {'modelo': modelo,
+         'marca': marca,
+         'precio': precio,
+         'ano': ano}
+    return coches.append(x)
+
+
+new_car('Nissan x10', 2, 35200, 2018)
+
+print(coches)
+
+
+def new_marca(id, nombre):
+    y = (id, nombre)
+    return marcas.append(y)
+
+
+new_marca(4, 'Toyota')
+
+print(marcas)
+
+
+def descuento():
+    for i in coches:
+        if i['ano'] < 2019:
+            i['precio'] = i['precio'] * 0.9
+        else:
+            i['precio'] = i['precio']
+
+    return i['precio']
+
+
+descuento()
+
+print(coches)
+
+
+def agg_car(modelo, marca, precio, ano):
+
+    global coches
+
+    for i in coches:
+        if i['modelo'] == modelo and i['marca'] == marca and i['precio'] == precio and i['ano'] == ano:
+            pagos.append(i)
+            coches.pop(coches.index(i))
+
+        else:
+            continue
+
+
+agg_car('Audi C3', 1, 25000, 2017)
+
+
+idmarca = []
+
+
+def del_marcas():
+
+    for x in coches:
+        idmarca.insert(0, x['marca'])
+
+    for i in marcas:
+        if i[0] not in idmarca:
+            marcas.pop(marcas.index(i))
+        else:
+            continue
+
+
+del_marcas()
+
+print(marcas)
